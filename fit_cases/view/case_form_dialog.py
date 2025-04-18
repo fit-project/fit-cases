@@ -56,6 +56,7 @@ class CaseFormDialog(QtWidgets.QDialog):
 
         # CANCEL BUTTON
         self.ui.cancel_button.clicked.connect(self.reject)
+
         # SAVE BUTTON
         self.ui.save_button.clicked.connect(self.accept)
 
@@ -75,6 +76,9 @@ class CaseFormDialog(QtWidgets.QDialog):
             if self.__case_info is not None:
                 case_name = self.__case_info.get("name")
                 self.ui.name.setCurrentText(case_name)
+            else:
+                self.ui.save_button.setEnabled(False)
+
             self.ui.name.lineEdit().setReadOnly(True)
 
             if (

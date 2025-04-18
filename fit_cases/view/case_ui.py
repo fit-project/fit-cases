@@ -9,6 +9,9 @@
 
 from PySide6 import QtCore, QtGui, QtWidgets
 
+from fit_cases.lang import load_translations
+from fit_common.core.utility import get_version
+
 
 class Ui_case_dialog(object):
     def setupUi(self, Dialog):
@@ -604,26 +607,23 @@ class Ui_case_dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "FIT Case"))
-        self.title_right_info.setText(_translate("Dialog", "Case"))
-        self.temporary_msg.setText(
-            _translate(
-                "Dialog",
-                '<html><head/><body><p><span style=" font-weight:600; text-decoration: underline; color:#fc0107;">The information is temporary and will not be saved, so once the report is generated it will be lost.</span></p></body></html>',
-            )
-        )
-        self.temporary_name.setPlaceholderText(_translate("Dialog", "Case Name"))
-        self.lawyer_name.setPlaceholderText(_translate("Dialog", "Laywer"))
-        self.operator.setPlaceholderText(_translate("Dialog", "Operator"))
-        self.courthouse.setPlaceholderText(_translate("Dialog", "Courthouse"))
+        Dialog.setWindowTitle("FIT Case")
+
+        self.translations = load_translations()
+
+        self.title_right_info.setText(self.translations["TITLE"])
+        self.temporary_msg.setText(self.translations["TEMPORARY_MSG"])
+        self.temporary_name.setPlaceholderText(self.translations["TEMPORARY_NAME"])
+        self.lawyer_name.setPlaceholderText(self.translations["LAWYER"])
+        self.operator.setPlaceholderText(self.translations["OPERATOR"])
+        self.courthouse.setPlaceholderText(self.translations["COURTHOUSE"])
         self.proceeding_number.setPlaceholderText(
-            _translate("Dialog", "Proceeding number")
+            self.translations["PROCEEDING_NUMBER"]
         )
-        self.logo.setPlaceholderText(_translate("Dialog", "Select logo"))
-        self.logo_button.setText(_translate("Dialog", "Open"))
-        self.notes.setPlaceholderText(_translate("Dialog", "Notes"))
-        self.save_button.setText(_translate("Dialog", "Save"))
-        self.cancel_button.setText(_translate("Dialog", "Cancel"))
-        self.credits_label.setText(_translate("Dialog", "By: fit-project.org"))
-        self.version.setText(_translate("Dialog", "v1.0.3"))
+        self.logo.setPlaceholderText(self.translations["LOGO"])
+        self.logo_button.setText(self.translations["LOGO_BUTTON"])
+        self.notes.setPlaceholderText(self.translations["NOTES"])
+        self.save_button.setText(self.translations["SAVE_BUTTON"])
+        self.cancel_button.setText(self.translations["CANCEL_BUTTON"])
+        self.credits_label.setText("By: fit-project.org")
+        self.version.setText(get_version())
