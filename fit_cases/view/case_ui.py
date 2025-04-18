@@ -10,7 +10,7 @@
 from PySide6 import QtCore, QtGui, QtWidgets
 
 from fit_cases.lang import load_translations
-from fit_common.core.utility import get_version
+from fit_common.core.utils import get_version
 
 
 class Ui_case_dialog(object):

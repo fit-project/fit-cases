@@ -10,7 +10,7 @@
 from PySide6 import QtCore, QtWidgets
 
 from fit_cases.view.case_form_manager import CaseFormManager
-from fit_common.core.utility import get_version
+from fit_common.core.utils import get_version
 
 from fit_cases.controller.case import Case as CaseController
 from fit_cases.lang import load_translations
