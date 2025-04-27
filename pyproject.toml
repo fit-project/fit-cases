@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fit-cases"
-version = "1.0.2"
+version = "1.0.3"
 description = "Modulo di configurazione per il progetto FIT"
 authors = ["FIT Project"]
 license = "LGPL-3.0-or-later"
@@ -12,11 +12,11 @@ packages = [
 python = ">=3.9,<3.13"
 PySide6 = "6.9.0"
 sqlalchemy = "^2.0.40"
-pillow = "^11.2.1"
 
 fit-common = {git = "https://github.com/fit-project/fit-common.git", rev = "main"}
 fit-assets = {git = "https://github.com/fit-project/fit-assets.git", rev = "main"}
 fit-configurations = {git = "https://github.com/fit-project/fit-configurations.git", rev = "main"}
+pillow = "10.2.0"
 
 
 
