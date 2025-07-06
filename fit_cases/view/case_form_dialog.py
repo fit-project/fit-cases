@@ -26,7 +26,18 @@ from fit_cases.view.case_ui import (
     Ui_case_dialog,
 )
 
+from enum import Enum
+
+class CaseMode(Enum):
+    EXISTING = "existing"
+    TEMPORARY = "temporary"
+    NEW = "new"
+
+
 from fit_assets import resources
+
+
+
 
 
 class CaseFormDialog(QtWidgets.QDialog):
@@ -34,6 +45,14 @@ class CaseFormDialog(QtWidgets.QDialog):
         super().__init__(parent)
         self.__temporary = temporary
         self.__case_info = case_info
+
+        if case_info is not None:
+            self.__mode = CaseMode.EXISTING
+        elif temporary:
+            self.__mode = CaseMode.TEMPORARY
+        else:
+            self.__mode = CaseMode.NEW
+
 
         self.translations = load_translations()
 
@@ -72,11 +91,11 @@ class CaseFormDialog(QtWidgets.QDialog):
         # TEMPORARY CASE NAME
         case_name = self.translations["TEMPORARY_CASE_NAME"]
         id = -1
-        if self.__temporary is True:
+        if self.__mode == CaseMode.TEMPORARY:
             self.ui.name.hide()
             self.ui.save_button.setEnabled(False)
             self.ui.temporary_name.textChanged.connect(self.__enable_save_button)
-        else:
+        elif self.__mode == CaseMode.EXISTING:
             self.ui.temporary_name.hide()
             self.ui.temporary_msg.hide()
             if self.__case_info is not None:
@@ -95,6 +114,14 @@ class CaseFormDialog(QtWidgets.QDialog):
             if self.__case_info is not None:
                 if "id" in self.__case_info:
                     id = self.__case_info.get("id")
+        elif self.__mode == CaseMode.NEW:
+            self.ui.temporary_name.hide()
+            self.ui.temporary_msg.hide()
+            self.ui.name.setEditable(True)
+            self.ui.name.lineEdit().setReadOnly(False)
+            self.ui.name.setCurrentText("")
+            self.ui.save_button.setEnabled(False)
+            self.ui.name.lineEdit().textChanged.connect(self.__enable_save_button)
 
         self.ui.title_right_info.setText(
             self.translations["DIALOG_TITLE"].format(case_name, str(id))
@@ -181,7 +208,7 @@ class CaseFormDialog(QtWidgets.QDialog):
 
     def accept(self):
         self.__case_info = self.form_manager.get_current_case_info()
-        if self.__temporary is False:
+        if self.__mode in [CaseMode.NEW, CaseMode.EXISTING]:
             CaseController().cases = self.__case_info
         return super().accept()
 
