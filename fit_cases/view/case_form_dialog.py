@@ -115,6 +115,8 @@ class CaseFormDialog(QtWidgets.QDialog):
                 if "id" in self.__case_info:
                     id = self.__case_info.get("id")
         elif self.__mode == CaseMode.NEW:
+            case_name = self.translations["NEW_CASE_NAME"]
+            id = -1
             self.ui.temporary_name.hide()
             self.ui.temporary_msg.hide()
             self.ui.name.setEditable(True)

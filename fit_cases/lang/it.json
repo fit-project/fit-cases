@@ -18,6 +18,7 @@
     "ERR_SELECTED_LOGO_FORMAT": "I formati consentiti sono {}. Il formato dell'immagine selezionata è {}.",
     "ERR_SELECTED_LOGO_MINIMUM_WIDTH": "La larghezza minima consentita è di {}px. L'immagine selezionata ha una larghezza di {}px.",
     "TEMPORARY_CASE_NAME": "Temporaneo",
+    "NEW_CASE_NAME": "Nuovo",
     "ERR_SELECTED_LOGO_BG_COLOR": "I colori di sfondo consentiti sono {}.",
     "WAR_NOT_CASE_INFO_JSON_FILE_FOUND": "Il file <i><strong>case_info.json</strong></i> non è stato trovato!<br><br>Vuoi inserire le informazioni necessarie per generare il report (<strong>non verranno salvate nel database</strong>)?<br><br><strong style=\"color:red\">Se non inserisci alcuna informazione, nel report il caso sarà identificato come SCONOSCIUTO!</strong>",
     "TEMPORARY_MSG": "<html><head/><body><p><span style=\"font-weight:600; text-decoration: underline; color:#fc0107;\">Le informazioni sono temporanee e non verranno salvate, quindi una volta generato il report andranno perse.</span></p></body></html>",
