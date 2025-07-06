@@ -88,10 +88,10 @@ class CaseFormDialog(QtWidgets.QDialog):
         # FORM MANAGER
         self.form_manager = CaseFormManager(self.ui.form, self.__temporary)
 
-        # TEMPORARY CASE NAME
-        case_name = self.translations["TEMPORARY_CASE_NAME"]
-        id = -1
         if self.__mode == CaseMode.TEMPORARY:
+            # TEMPORARY CASE NAME
+            case_name = self.translations["TEMPORARY_CASE_NAME"]
+            id = -1
             self.ui.name.hide()
             self.ui.save_button.setEnabled(False)
             self.ui.temporary_name.textChanged.connect(self.__enable_save_button)
