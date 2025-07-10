@@ -25,8 +25,12 @@ from fit_configurations.controller.tabs.general.typesproceedings import (
 from fit_cases.lang import load_translations
 
 
-class CaseFormManager:
-    def __init__(self, form, temporary=False):
+class CaseFormManager(QtCore.QObject):
+    case_found = QtCore.Signal(dict)
+    case_not_found = QtCore.Signal()
+
+    def __init__(self, form, temporary=False, parent=None):
+        QtCore.QObject.__init__(self, parent=parent)
         self.controller = CaseController()
         self.cases = self.controller.cases
 
@@ -227,6 +231,8 @@ class CaseFormManager:
             )
 
         if case_info is not None:
+            self.case_found.emit(case_info)
+
             for keyword, value in case_info.items():
                 if keyword == "logo_bin":
                     if value is not None:
@@ -260,6 +266,7 @@ class CaseFormManager:
 
                             self.set_index_from_type_proceedings_id(value)
         else:
+            self.case_not_found.emit()
             self.__clear_case_information()
 
     def __clear_case_information(self):

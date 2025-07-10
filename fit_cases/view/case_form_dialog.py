@@ -87,6 +87,8 @@ class CaseFormDialog(QtWidgets.QDialog):
 
         # FORM MANAGER
         self.form_manager = CaseFormManager(self.ui.form, self.__temporary)
+        self.form_manager.case_found.connect(self.__on_case_found)
+        self.form_manager.case_not_found.connect(self.__on_case_not_found)
 
         if self.__mode == CaseMode.TEMPORARY:
             # TEMPORARY CASE NAME
@@ -141,6 +143,20 @@ class CaseFormDialog(QtWidgets.QDialog):
 
     def __enable_save_button(self, text):
         self.ui.save_button.setEnabled(bool(text))
+    
+    def __on_case_found(self, case_info):
+        if self.__mode == CaseMode.NEW:
+            self.__mode = CaseMode.EXISTING
+            self.ui.title_right_info.setText(
+                self.translations["DIALOG_TITLE"].format(case_info.get('name'), str(case_info.get('id')))
+            )
+    
+    def __on_case_not_found(self):
+        if self.__mode == CaseMode.EXISTING:
+            self.__mode = CaseMode.NEW
+            self.ui.title_right_info.setText(
+                self.translations["DIALOG_TITLE"].format(self.translations["NEW_CASE_NAME"], str(-1)
+            ))
 
     def get_case_info(self, acquisition_directory=None):
         if acquisition_directory is None:
@@ -210,8 +226,10 @@ class CaseFormDialog(QtWidgets.QDialog):
 
     def accept(self):
         self.__case_info = self.form_manager.get_current_case_info()
-        if self.__mode in [CaseMode.NEW, CaseMode.EXISTING]:
+        if self.__mode in [CaseMode.EXISTING]:
             CaseController().cases = self.__case_info
+        elif self.__mode in [CaseMode.NEW]:
+            CaseController().add(self.__case_info)
         return super().accept()
 
     def reject(self):
