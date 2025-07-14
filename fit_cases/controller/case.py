@@ -72,19 +72,3 @@ class Case:
     @property
     def names(self):
         return list(map(lambda x: x["name"], self._names))
-
-    def create_acquisition_directory(
-        self, acquisition_type, cases_folder, case_folder, content
-    ):
-        # Directories: Cases -> Case Name -> Acquisition Type -> Acquisition Content
-        if acquisition_type == "web":
-            content = urlparse(content).netloc
-
-        directories = {
-            "cases_folder": cases_folder,
-            "case_folder": case_folder,
-            "acquisition_type_folder": acquisition_type,
-            "content_folder": content,
-        }
-
-        return self.model.create_acquisition_directory(directories)
