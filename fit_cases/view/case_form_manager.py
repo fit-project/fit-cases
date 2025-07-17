@@ -8,20 +8,16 @@
 ######
 
 import string
-from PIL import Image
 
+from fit_common.gui.error import Error as ErrorView
+from fit_configurations.controller.tabs.general.legal_proceeding_type import (
+    LegalProceedingTypeController,
+)
+from PIL import Image
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtWidgets import QFileDialog
 
-from fit_common.gui.error import Error as ErrorView
-
-
 from fit_cases.controller.case import Case as CaseController
-
-from fit_configurations.controller.tabs.general.typesproceedings import (
-    TypesProceedings as TypesProceedingsController,
-)
-
 from fit_cases.lang import load_translations
 
 
@@ -34,7 +30,7 @@ class CaseFormManager(QtCore.QObject):
         self.controller = CaseController()
         self.cases = self.controller.cases
 
-        self.proceedings = TypesProceedingsController().proceedings
+        self.proceedings = LegalProceedingTypeController().proceedings
         self.logo_formats = ["JPEG", "PNG"]
         self.logo_minimum_width = 200
         self.logo_background = ["transparent", "white"]

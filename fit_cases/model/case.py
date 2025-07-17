@@ -8,14 +8,12 @@
 ######
 
 
-from fit_cases.model.db import Db
-
 import os
-import stat
-import re
 
-from sqlalchemy import Column, Integer, String, Text, LargeBinary
+from sqlalchemy import Column, Integer, LargeBinary, String, Text
 from sqlalchemy.ext.declarative import declarative_base
+
+from fit_cases.model.db import Db
 
 Base = declarative_base()
 
