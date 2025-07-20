@@ -7,26 +7,22 @@
 # -----
 ######
 
-import os
-import json
-
 import base64
+import json
+import os
+from enum import Enum
 
-from PySide6 import QtCore, QtWidgets
-
-from fit_cases.view.case_form_manager import CaseFormManager
 from fit_common.core.utils import get_version
 from fit_common.gui.dialog import Dialog, DialogButtonTypes
+from PySide6 import QtCore, QtWidgets
 
 from fit_cases.controller.case import Case as CaseController
 from fit_cases.lang import load_translations
-
-
+from fit_cases.view.case_form_manager import CaseFormManager
 from fit_cases.view.case_ui import (
     Ui_case_dialog,
 )
 
-from enum import Enum
 
 class CaseMode(Enum):
     EXISTING = "existing"
@@ -34,10 +30,7 @@ class CaseMode(Enum):
     NEW = "new"
 
 
-from fit_assets import resources
-
-
-
+from fit_assets import resources  # noqa: F401
 
 
 class CaseFormDialog(QtWidgets.QDialog):
@@ -52,7 +45,6 @@ class CaseFormDialog(QtWidgets.QDialog):
             self.__mode = CaseMode.TEMPORARY
         else:
             self.__mode = CaseMode.NEW
-
 
         self.translations = load_translations()
 
@@ -143,20 +135,24 @@ class CaseFormDialog(QtWidgets.QDialog):
 
     def __enable_save_button(self, text):
         self.ui.save_button.setEnabled(bool(text))
-    
+
     def __on_case_found(self, case_info):
         if self.__mode == CaseMode.NEW:
             self.__mode = CaseMode.EXISTING
             self.ui.title_right_info.setText(
-                self.translations["DIALOG_TITLE"].format(case_info.get('name'), str(case_info.get('id')))
+                self.translations["DIALOG_TITLE"].format(
+                    case_info.get("name"), str(case_info.get("id"))
+                )
             )
-    
+
     def __on_case_not_found(self):
         if self.__mode == CaseMode.EXISTING:
             self.__mode = CaseMode.NEW
             self.ui.title_right_info.setText(
-                self.translations["DIALOG_TITLE"].format(self.translations["NEW_CASE_NAME"], str(-1)
-            ))
+                self.translations["DIALOG_TITLE"].format(
+                    self.translations["NEW_CASE_NAME"], str(-1)
+                )
+            )
 
     def get_case_info(self, acquisition_directory=None):
         if acquisition_directory is None:
@@ -226,6 +222,7 @@ class CaseFormDialog(QtWidgets.QDialog):
 
     def accept(self):
         self.__case_info = self.form_manager.get_current_case_info()
+        print(self.__case_info)
         if self.__mode in [CaseMode.EXISTING]:
             CaseController().cases = self.__case_info
         elif self.__mode in [CaseMode.NEW]:

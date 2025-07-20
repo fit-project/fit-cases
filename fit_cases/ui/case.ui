@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>case_dialog</class>
+ <widget class="QDialog" name="case_dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -230,7 +230,7 @@ QComboBox::drop-down {
 	border-left-style: solid;
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;	
-	background-image: url(:/icons/cil-arrow-bottom.png);
+	background-image: url(:/icons/icons/cil-arrow-bottom.png);
 	background-position: center;
 	background-repeat: no-reperat;
  }
