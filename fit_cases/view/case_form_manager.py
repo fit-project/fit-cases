@@ -328,6 +328,8 @@ class CaseFormManager(QtCore.QObject):
                         item = ""
 
                 case_info[keyword] = item
+            elif item is None and keyword == "logo_bin":
+                case_info["logo_bin"] = None
 
         case_info["logo_height"] = self.logo_height
         case_info["logo_width"] = self.logo_width
