@@ -222,7 +222,6 @@ class CaseFormDialog(QtWidgets.QDialog):
 
     def accept(self):
         self.__case_info = self.form_manager.get_current_case_info()
-        print(self.__case_info)
         if self.__mode in [CaseMode.EXISTING]:
             CaseController().cases = self.__case_info
         elif self.__mode in [CaseMode.NEW]:
