@@ -12,7 +12,7 @@ import json
 import os
 from enum import Enum
 
-from fit_common.core.utils import get_version
+from fit_common.core import get_version
 from fit_common.gui.dialog import Dialog, DialogButtonTypes
 from PySide6 import QtCore, QtWidgets
 
