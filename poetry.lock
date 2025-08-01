@@ -170,7 +170,7 @@ windows-tools = {version = "^2.5.0", markers = "sys_platform == \"win32\""}
 type = "git"
 url = "https://github.com/fit-project/fit-common.git"
 reference = "main"
-resolved_reference = "df42d1850fafd2026815c5a6190c4c1b18df267e"
+resolved_reference = "76f8869cc173a2c72709ce430d98e8f569c960ae"
 
 [[package]]
 name = "fit-configurations"
@@ -192,7 +192,7 @@ sqlalchemy = "^2.0.40"
 type = "git"
 url = "https://github.com/fit-project/fit-configurations.git"
 reference = "main"
-resolved_reference = "351fcffd3d7d6749e24b65c2ffe018f84c16cb8a"
+resolved_reference = "f02c5816a7c06e827e71dbeba285b9dc05dff451"
 
 [[package]]
 name = "greenlet"

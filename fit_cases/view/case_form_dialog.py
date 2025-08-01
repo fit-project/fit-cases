@@ -12,7 +12,7 @@ import json
 import os
 from enum import Enum
 
-from fit_common.core import get_local_version
+from fit_common.core import get_version
 from fit_common.gui.dialog import Dialog, DialogButtonTypes
 from PySide6 import QtCore, QtWidgets
 
@@ -69,7 +69,7 @@ class CaseFormDialog(QtWidgets.QDialog):
         self.ui.close_button.clicked.connect(self.close)
 
         # SET VERSION
-        self.ui.version.setText(get_local_version())
+        self.ui.version.setText(get_version())
 
         # CANCEL BUTTON
         self.ui.cancel_button.clicked.connect(self.reject)
