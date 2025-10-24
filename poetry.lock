@@ -401,8 +401,8 @@ PySide6 = "6.9.0"
 [package.source]
 type = "git"
 url = "https://github.com/fit-project/fit-assets.git"
-reference = "chore/update-python-compatibility-3.13"
-resolved_reference = "a907de7f0260f98d943c765bd80a88dda9eac6fc"
+reference = "main"
+resolved_reference = "6dbfcf37b85cae3eb942851e4b5041c86787f914"
 
 [[package]]
 name = "fit-common"
@@ -427,8 +427,8 @@ xhtml2pdf = "^0.2.17"
 [package.source]
 type = "git"
 url = "https://github.com/fit-project/fit-common.git"
-reference = "chore/update-python-compatibility-3.13"
-resolved_reference = "cfce375e08ad0aedf62209af09574d2ed26cfe5d"
+reference = "main"
+resolved_reference = "933752964ede59c38c891dcef6f7197f466f18ed"
 
 [[package]]
 name = "fit-configurations"
@@ -441,8 +441,8 @@ files = []
 develop = false
 
 [package.dependencies]
-fit-assets = {git = "https://github.com/fit-project/fit-assets.git", branch = "chore/update-python-compatibility-3.13"}
-fit-common = {git = "https://github.com/fit-project/fit-common.git", branch = "chore/update-python-compatibility-3.13"}
+fit-assets = {git = "https://github.com/fit-project/fit-assets.git", rev = "main"}
+fit-common = {git = "https://github.com/fit-project/fit-common.git", rev = "main"}
 pyinstaller = "^6.16.0"
 PySide6 = "6.9.0"
 sqlalchemy = "^2.0.40"
@@ -450,8 +450,8 @@ sqlalchemy = "^2.0.40"
 [package.source]
 type = "git"
 url = "https://github.com/fit-project/fit-configurations.git"
-reference = "chore/update-python-compatibility-3.13"
-resolved_reference = "1bb922fcbafba853498976e060f366f62179c405"
+reference = "main"
+resolved_reference = "0781938123fdf5c64a191595b097762fe038256e"
 
 [[package]]
 name = "freetype-py"
@@ -2079,4 +2079,4 @@ test = ["coverage (>=5.3)", "tomli (>=2.0.1) ; python_version < \"3.11\"", "tox"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.14"
-content-hash = "f75947ff5569f48ba132e415687349b40e663065d18778b465ac56b3774fa757"
+content-hash = "dcc0a53c48b3dbb53eee4839c669b2e7e91f23f0aadafd578510fe0e490bd8b9"
