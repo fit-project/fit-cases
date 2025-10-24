@@ -82,10 +82,13 @@ class CaseFormDialog(QtWidgets.QDialog):
         self.form_manager.case_found.connect(self.__on_case_found)
         self.form_manager.case_not_found.connect(self.__on_case_not_found)
 
+        case_name = ""
+        case_id = -1
+
         if self.__mode == CaseMode.TEMPORARY:
             # TEMPORARY CASE NAME
             case_name = self.translations["TEMPORARY_CASE_NAME"]
-            id = -1
+            case_id = -1
             self.ui.name.hide()
             self.ui.save_button.setEnabled(False)
             self.ui.temporary_name.textChanged.connect(self.__enable_save_button)
@@ -93,8 +96,9 @@ class CaseFormDialog(QtWidgets.QDialog):
             self.ui.temporary_name.hide()
             self.ui.temporary_msg.hide()
             if self.__case_info is not None:
-                case_name = self.__case_info.get("name")
+                case_name = self.__case_info.get("name", "")
                 self.ui.name.setCurrentText(case_name)
+                case_id = self.__case_info.get("id", -1)
             else:
                 self.ui.save_button.setEnabled(False)
 
@@ -110,7 +114,7 @@ class CaseFormDialog(QtWidgets.QDialog):
                     id = self.__case_info.get("id")
         elif self.__mode == CaseMode.NEW:
             case_name = self.translations["NEW_CASE_NAME"]
-            id = -1
+            case_id = -1
             self.ui.temporary_name.hide()
             self.ui.temporary_msg.hide()
             self.ui.name.setEditable(True)
@@ -120,7 +124,7 @@ class CaseFormDialog(QtWidgets.QDialog):
             self.ui.name.lineEdit().textChanged.connect(self.__enable_save_button)
 
         self.ui.title_right_info.setText(
-            self.translations["DIALOG_TITLE"].format(case_name, str(id))
+            self.translations["DIALOG_TITLE"].format(case_name, str(case_id))
         )
         self.form_manager.set_case_information()
 
