@@ -126,6 +126,9 @@ class CaseFormDialog(QtWidgets.QDialog):
         self.ui.title_right_info.setText(
             self.translations["DIALOG_TITLE"].format(case_name, str(case_id))
         )
+
+        self.ui.save_button.setDefault(True)
+
         self.form_manager.set_case_information()
 
     def mousePressEvent(self, event):
