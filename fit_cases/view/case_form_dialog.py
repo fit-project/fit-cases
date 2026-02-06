@@ -14,6 +14,7 @@ from enum import Enum
 
 from fit_common.core import get_version
 from fit_common.gui.dialog import Dialog, DialogButtonTypes
+from fit_common.gui.ui_translation import translate_ui
 from PySide6 import QtCore, QtWidgets
 
 from fit_cases.controller.case import Case as CaseController
@@ -84,6 +85,8 @@ class CaseFormDialog(QtWidgets.QDialog):
 
         case_name = ""
         case_id = -1
+
+        translate_ui(self.translations, self)
 
         if self.__mode == CaseMode.TEMPORARY:
             # TEMPORARY CASE NAME
