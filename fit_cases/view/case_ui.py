@@ -440,13 +440,13 @@ class Ui_case_dialog(object):
 
         self.form_layout.addWidget(self.temporary_name)
 
-        self.lawyer_name = QLineEdit(self.form)
-        self.lawyer_name.setObjectName("lawyer_name")
-        self.lawyer_name.setMinimumSize(QSize(0, 30))
-        self.lawyer_name.setMaximumSize(QSize(300, 16777215))
-        self.lawyer_name.setStyleSheet("background-color: rgb(33, 37, 43);")
+        self.lawyer = QLineEdit(self.form)
+        self.lawyer.setObjectName("lawyer")
+        self.lawyer.setMinimumSize(QSize(0, 30))
+        self.lawyer.setMaximumSize(QSize(300, 16777215))
+        self.lawyer.setStyleSheet("background-color: rgb(33, 37, 43);")
 
-        self.form_layout.addWidget(self.lawyer_name)
+        self.form_layout.addWidget(self.lawyer)
 
         self.operator = QLineEdit(self.form)
         self.operator.setObjectName("operator")
@@ -668,8 +668,8 @@ class Ui_case_dialog(object):
         self.temporary_name.setPlaceholderText(
             QCoreApplication.translate("case_dialog", "Case Name", None)
         )
-        self.lawyer_name.setText("")
-        self.lawyer_name.setPlaceholderText(
+        self.lawyer.setText("")
+        self.lawyer.setPlaceholderText(
             QCoreApplication.translate("case_dialog", "Laywer", None)
         )
         self.operator.setText("")
