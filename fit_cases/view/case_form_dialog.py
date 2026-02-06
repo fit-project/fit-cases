@@ -47,7 +47,7 @@ class CaseFormDialog(QtWidgets.QDialog):
         else:
             self.__mode = CaseMode.NEW
 
-        self.translations = load_translations()
+        self.__translations = load_translations()
 
         self.__init_ui()
 
@@ -86,11 +86,11 @@ class CaseFormDialog(QtWidgets.QDialog):
         case_name = ""
         case_id = -1
 
-        translate_ui(self.translations, self)
+        translate_ui(self.__translations, self)
 
         if self.__mode == CaseMode.TEMPORARY:
             # TEMPORARY CASE NAME
-            case_name = self.translations["TEMPORARY_CASE_NAME"]
+            case_name = self.__translations["TEMPORARY_CASE_NAME"]
             case_id = -1
             self.ui.name.hide()
             self.ui.save_button.setEnabled(False)
@@ -116,7 +116,7 @@ class CaseFormDialog(QtWidgets.QDialog):
                 if "id" in self.__case_info:
                     id = self.__case_info.get("id")
         elif self.__mode == CaseMode.NEW:
-            case_name = self.translations["NEW_CASE_NAME"]
+            case_name = self.__translations["NEW_CASE_NAME"]
             case_id = -1
             self.ui.temporary_name.hide()
             self.ui.temporary_msg.hide()
@@ -127,7 +127,7 @@ class CaseFormDialog(QtWidgets.QDialog):
             self.ui.name.lineEdit().textChanged.connect(self.__enable_save_button)
 
         self.ui.title_right_info.setText(
-            self.translations["DIALOG_TITLE"].format(case_name, str(case_id))
+            self.__translations["DIALOG_TITLE"].format(case_name, str(case_id))
         )
 
         self.ui.save_button.setDefault(True)
@@ -150,7 +150,7 @@ class CaseFormDialog(QtWidgets.QDialog):
         if self.__mode == CaseMode.NEW:
             self.__mode = CaseMode.EXISTING
             self.ui.title_right_info.setText(
-                self.translations["DIALOG_TITLE"].format(
+                self.__translations["DIALOG_TITLE"].format(
                     case_info.get("name"), str(case_info.get("id"))
                 )
             )
@@ -159,8 +159,8 @@ class CaseFormDialog(QtWidgets.QDialog):
         if self.__mode == CaseMode.EXISTING:
             self.__mode = CaseMode.NEW
             self.ui.title_right_info.setText(
-                self.translations["DIALOG_TITLE"].format(
-                    self.translations["NEW_CASE_NAME"], str(-1)
+                self.__translations["DIALOG_TITLE"].format(
+                    self.__translations["NEW_CASE_NAME"], str(-1)
                 )
             )
 
@@ -180,8 +180,8 @@ class CaseFormDialog(QtWidgets.QDialog):
                     case_info["logo_bin"] = base64.b64decode(bytes(logo_bin, "utf-8"))
             else:
                 dialog = Dialog(
-                    self.translations["TITLE"],
-                    self.translations["WAR_NOT_CASE_INFO_JSON_FILE_FOUND"],
+                    self.__translations["TITLE"],
+                    self.__translations["WAR_NOT_CASE_INFO_JSON_FILE_FOUND"],
                 )
                 dialog.message.setStyleSheet("font-size: 13px;")
                 dialog.set_buttons_type(DialogButtonTypes.QUESTION)
