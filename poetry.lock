@@ -446,7 +446,7 @@ sqlalchemy = "^2.0.40"
 type = "git"
 url = "https://github.com/fit-project/fit-configurations.git"
 reference = "main"
-resolved_reference = "d48d84dcec520bd4eb9c45e05cbcc8e0e6b4051e"
+resolved_reference = "a49e9b085a259d5df76c9744795c30558bf542bc"
 
 [[package]]
 name = "freetype-py"
