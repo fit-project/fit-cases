@@ -7,6 +7,7 @@ license = "LGPL-3.0-or-later"
 packages = [
     { include = "fit_cases" }
 ]
+exclude = ["fit_cases/ui/**"]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.14"
