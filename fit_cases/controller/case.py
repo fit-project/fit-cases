@@ -11,8 +11,8 @@ from fit_cases.model.case import Case as CaseModel
 
 
 class Case:
-    _cases = []
-    _names = []
+    _cases: list[dict] = []
+    _names: list[dict] = []
 
     def __init__(self):
         self.model = CaseModel()

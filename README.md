@@ -6,35 +6,79 @@ This module provides the graphical interface to modify case information used by 
 
 ---
 
-## 🔗 Related FIT components
-
-This package is part of the broader [fit](https://github.com/fit-project/fit) ecosystem and depends on:
-
-- [`fit-common`](https://github.com/fit-project/fit-common) – shared utility and core logic
-- [`fit-assets`](https://github.com/fit-project/fit-assets) – UI resources and assets
-- [`fit-configurations`](https://github.com/fit-project/fit-configurations.git) – Configuration settings
-
----
-
-## 🐍 Dependencies
+## Dependencies
 
 Main dependencies are:
 
-- Python `>=3.9,<3.13`
+- **Python** >=3.11,<3.14
+- **Poetry** (recommended for development)
 - [`PySide6`](https://pypi.org/project/PySide6/) 6.9.0
 - [`SQLAlchemy`](https://pypi.org/project/SQLAlchemy/) ^2.0.40
-- `fit-common` (custom submodule)
-- `fit-assets` (custom submodule)
-- `fit-configurations` (custom submodule)
+- [`fit-configurations`](https://github.com/fit-project/fit-configurations.git) – Configuration settings
 
 See `pyproject.toml` for full details.
 
 ---
 
-## 🚀 Installation
+## Local checks (same as CI)
 
-Install the module using [Poetry](https://python-poetry.org/):
+Run these commands before opening a PR, so failures are caught locally first.
 
+### What each tool does
+- `pytest`: runs automated tests (`unit`, `contract`, and `integration` suites).
+- `ruff`: checks code style and common static issues (lint).
+- `mypy`: performs static type checking on annotated Python code.
+- `bandit`: scans source code for common security anti-patterns.
+- `pip-audit`: checks installed dependencies for known CVEs.
+
+### 1) Base setup
 ```bash
-poetry install
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -U pip
+pip install . pytest ruff mypy "bandit[toml]" pip-audit
+python -m pip install --upgrade "setuptools>=78.1.1"
+```
+
+### 2) Test suite
+```bash
+export QT_QPA_PLATFORM=offscreen
+
+# unit tests
+pytest -m unit -q tests
+
+# contract tests
+pytest -m contract -q tests
+
+# integration tests (requires fit-assets package)
+pytest -m integration -q tests
+
+# end-to-end smoke tests
+pytest -m e2e -q tests
+```
+
+### 3) Quality and security checks
+```bash
+ruff check fit_cases tests
+mypy fit_cases
+bandit -c pyproject.toml -r fit_cases -q -ll -ii
+PIPAPI_PYTHON_LOCATION="$(python -c 'import sys; print(sys.executable)')" \
+  python -m pip_audit --progress-spinner off
+```
+
+Note: `pip-audit` may print a skip message for `fit-common` and `fit-assets`  because it is a local package and not published on PyPI.
+
+---
+
+## Installation
+
+``` bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install --upgrade pip
+    pip install poetry
+    poetry lock
+    poetry install
+    poetry run python main.py
+```
 

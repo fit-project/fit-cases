@@ -17,6 +17,7 @@ from fit_common.gui.dialog import Dialog, DialogButtonTypes
 from fit_common.gui.ui_translation import translate_ui
 from PySide6 import QtCore, QtWidgets
 
+from fit_assets import resources  # noqa: F401
 from fit_cases.controller.case import Case as CaseController
 from fit_cases.lang import load_translations
 from fit_cases.view.case_form_manager import CaseFormManager
@@ -29,9 +30,6 @@ class CaseMode(Enum):
     EXISTING = "existing"
     TEMPORARY = "temporary"
     NEW = "new"
-
-
-from fit_assets import resources  # noqa: F401
 
 
 class CaseFormDialog(QtWidgets.QDialog):
@@ -112,9 +110,6 @@ class CaseFormDialog(QtWidgets.QDialog):
                 and self.__case_info is not None
             ):
                 self.form_manager.cases.append(self.__case_info)
-            if self.__case_info is not None:
-                if "id" in self.__case_info:
-                    id = self.__case_info.get("id")
         elif self.__mode == CaseMode.NEW:
             case_name = self.__translations["NEW_CASE_NAME"]
             case_id = -1
