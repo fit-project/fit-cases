@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -52,14 +51,10 @@ jobs:
       - name: Show updated file (preview)
         run: grep '^version = ' pyproject.toml
 
-      - name: Create pull request with version bump
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: chore: bump version to ${{ steps.extract_version.outputs.version }}
-          branch: chore/bump-version-${{ steps.extract_version.outputs.version }}
-          delete-branch: true
-          title: chore: bump version to ${{ steps.extract_version.outputs.version }}
-          body: |
-            Automated version bump from tag `${{ github.ref_name }}`.
-          base: main
+      - name: Commit and push changes
+        run: |
+          VERSION="${{ steps.extract_version.outputs.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: bump version to $VERSION" || echo "ℹ️ No changes to commit"
+          git push origin HEAD:main
