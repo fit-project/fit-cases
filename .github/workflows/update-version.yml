@@ -57,10 +57,10 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: chore: bump version to ${{ steps.extract_version.outputs.version }}
+          commit-message: "chore: bump version to ${{ steps.extract_version.outputs.version }}"
           branch: chore/bump-version-${{ steps.extract_version.outputs.version }}
           delete-branch: true
-          title: chore: bump version to ${{ steps.extract_version.outputs.version }}
+          title: "chore: bump version to ${{ steps.extract_version.outputs.version }}"
           body: |
             Automated version bump from tag `${{ github.ref_name }}`.
           base: main
