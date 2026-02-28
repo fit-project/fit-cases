@@ -29,14 +29,14 @@ files = [
 
 [[package]]
 name = "certifi"
-version = "2026.1.4"
+version = "2026.2.25"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "certifi-2026.1.4-py3-none-any.whl", hash = "sha256:9943707519e4add1115f44c2bc244f782c0249876bf51b6599fee1ffbedd685c"},
-    {file = "certifi-2026.1.4.tar.gz", hash = "sha256:ac726dd470482006e014ad384921ed6438c457018f4b3d204aea4281258b2120"},
+    {file = "certifi-2026.2.25-py3-none-any.whl", hash = "sha256:027692e4402ad994f1c42e52a4997a9763c646b73e4096e4d5d6db8af1d6f0fa"},
+    {file = "certifi-2026.2.25.tar.gz", hash = "sha256:e887ab5cee78ea814d3472169153c2d12cd43b14bd03329a39a9c6e2e80bfba7"},
 ]
 
 [[package]]
@@ -434,8 +434,8 @@ sqlalchemy = "^2.0.40"
 [package.source]
 type = "git"
 url = "https://github.com/fit-project/fit-configurations.git"
-reference = "v1.0.0-rc1"
-resolved_reference = "399087f605ad3d4167c51ccceb2d3d2289e8e0eb"
+reference = "main"
+resolved_reference = "d7eb1e420352cb67dcfc0197c8f0f79696f3c32b"
 
 [[package]]
 name = "freetype-py"
@@ -1254,14 +1254,14 @@ async-http = ["aiohttp (>=3.9,<3.14)"]
 
 [[package]]
 name = "pypdf"
-version = "6.7.3"
+version = "6.7.4"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pypdf-6.7.3-py3-none-any.whl", hash = "sha256:cd25ac508f20b554a9fafd825186e3ba29591a69b78c156783c5d8a2d63a1c0a"},
-    {file = "pypdf-6.7.3.tar.gz", hash = "sha256:eca55c78d0ec7baa06f9288e2be5c4e8242d5cbb62c7a4b94f2716f8e50076d2"},
+    {file = "pypdf-6.7.4-py3-none-any.whl", hash = "sha256:527d6da23274a6c70a9cb59d1986d93946ba8e36a6bc17f3f7cce86331492dda"},
+    {file = "pypdf-6.7.4.tar.gz", hash = "sha256:9edd1cd47938bb35ec87795f61225fd58a07cfaf0c5699018ae1a47d6f8ab0e3"},
 ]
 
 [package.extras]
@@ -1986,4 +1986,4 @@ test = ["coverage (>=5.3)", "tomli (>=2.0.1) ; python_version < \"3.11\"", "tox"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.14"
-content-hash = "0425458134b1d1d0684e91effe6083f597c23ad54de7704feb198cf0bd7386bd"
+content-hash = "8663de7c1438965bb6cb239537236e468a2032c74393cc467f54dc809e8e91ee"

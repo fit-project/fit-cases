@@ -14,7 +14,7 @@ python = ">=3.11,<3.14"
 PySide6 = "6.9.0"
 sqlalchemy = "^2.0.40"
 pillow = ">=12.1.1,<13.0.0"
-fit-configurations = { git = "https://github.com/fit-project/fit-configurations.git", tag = "v1.0.0-rc1" }
+fit-configurations = { git = "https://github.com/fit-project/fit-configurations.git", branch = "main"}
 
 [build-system]
 requires = ["poetry-core"]
